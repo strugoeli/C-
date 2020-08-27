@@ -1,0 +1,56 @@
+cpp_ex2
+strugo
+305589269
+######
+
+FractalDrawer:
+
+This program is given a path to a csv format file which every line of the file represents a fractal
+by it's type and dimension. every line is in the form of type,dimension.
+this program reads the the file parse it and draw the fractals according to the file content
+in reverse order(lines of the file)
+
+  Implementation :
+
+   In order to gain modularity and other benefits I used object oriented programing:
+   1. first I created an abstract class for fractal. it makes sense because there is not
+      such thing as universal fractal.
+   2. I implemented functions for drawing each fractal type and than noticed there similarities
+      the only different between them is the conditions for marking the cell (i,j) in the matrix of the fractal
+      (which depends on the dimension and the dimension expansion factor).
+   3. In order to utilize the similarities I used inheritance: each of the type is derived from
+      the abstract class and overrides the boolean function which returns true if the cell
+      (i,j) is empty or false otherwise. In that way I could make the method drawFractal()
+      of the abstract class to be fit for all the three types.
+      gains:
+      * Modularity - we can add more fractals by creating new class and overrides the boolean function
+       _isEmptyCell and can safely delete types with no effect on the other class.
+      *Polymorphism - Every type can draw the fractal in it's own way without to refer explicitly
+      to it's real type
+      * Avoiding code repetition
+      * Readability
+    4.As we don't know in advance the types in the file nor there order I decided to
+      create a Factory and in that way I contain the a data structure and than used of
+      Fractal objects(smart pointers I'll explain), by using the Factory and use Polymorphism
+      to draw them correctly .
+
+    Data Structure:
+        We've been asked to draw the fractals in the opposite order from their appearance in the file.
+        for this task I decided to collect the objects in a vector.
+        but since Fractal is an abstract class there is no sense of creating Fractal's objects,
+        so instead I created unique pointer ( In order to avoid memory leak).
+        for each unique pointer that created by the Factory I pushed the pointer into the vector
+        each takes O(1), and eventually for draw the fractals I draw the last element
+        (can get access in O(1)) and pop it from the vector (O(1)).
+        In that way I fulfill the task in efficient way in time complexity terms.
+
+     Files:
+
+        used std in order to read the file and parse it/
+        I also created a function that handle the appearance of {\n, \r, \r\n},
+        so I can check properly if the lines from the file fit to the exercise condition.
+
+
+      Memory allocation :
+        Using smart pointer and primitive objects so I don't need to manually handle the
+        allocated memory

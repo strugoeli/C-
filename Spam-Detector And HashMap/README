@@ -1,0 +1,41 @@
+cpp_ex3
+strugo
+305589269
+######
+
+
+SpamDetector:
+
+This program is given a path to a csv format file which every line of the file represents a pair of
+(sequence, score) and a plain text and determines whether the given text is spam or not.
+
+
+    Implementation :
+
+    In order to store the pairs of the bad sequence and there score I implemented a hash map.
+    the hash map give us the ability to efficiently (in terms of running time), store the pairs
+    and easy access to them when needed.
+    in this implementation of hash map I used Open hashing.I used a dynamic array of vectors
+    each vector contains pairs of (string,int).
+
+
+    Data Structure:
+
+        Buckets ( vectors ) adding new value takes O(1) and checking whether a kay is contained takes linear time
+
+        dynamic array (pointer to bucket) - access bucket takes constant time with given key
+        (using it's hash code)
+
+     Files:
+
+        used std in order to read the file and parse it
+        I also created a function that handle the appearance of {\n, \r, \r\n}, and converts the chars in the
+        texts to lowercase letters (in the plain text and the sequences)
+        so I can check properly if the lines from the files fit to the exercise condition.
+
+
+      Memory allocation :
+
+        Used dynamic array initialized with default capacity and every time of re hashing I
+        created a new array with a new capacity and copy the content of the old one to it
+        and then free the memory of the old one.

@@ -1,0 +1,24 @@
+cpp_ex1
+strugo
+305589269
+######
+
+In this exercise we were required to implement a part of the decryption of RSA( for relatively small numbers).
+Important part of this exercise was to correctly work with overloading operator.
+after the overloading of the operators we could better use the objects GField and GFNumber and in the most cases
+we could treat GFNumbers as it was primitive number which made it easier to be focused on the logic of the program.
+
+In order to factorize a number we used two different algorithms:
+
+Trail Deviation:
+Iterating from 2 to the number's square root and trying to divides the number.
+this method is not efficient for big numbers
+
+
+Pollard Rho:
+
+In order to make our program more efficient we used this algorithm as long as we could in order to solve the problem or
+at least make it smaller by dividing the number we wish to factorize.
+
+(In this algo we had to check primacy with in not very efficient way but there are more efficient algorithms
+to solve this problem)
